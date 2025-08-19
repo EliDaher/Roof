@@ -20,20 +20,20 @@ export default function Landing() {
         <LandingHeader/>
       </div>
 
-      <div className='flex flex-col basis-1/3'>
+      <div className='flex flex-col basis-1/3 mt-5'>
 
-        <Divider className='w-full mt-3 basis-1/6'/>
+        <Divider className='w-full mt-5 basis-1/6'/>
 
         <div className='w-full basis-4/6 sm:hidden overflow-hidden'>
-          <img src={Beer} className='w-full -mt-20 h-96 animate-zoomIn object-cover object-top' alt="" />
+          <img src={Beer} className='w-full -mt-24 h-[22rem] animate-zoomIn object-cover object-top' alt="" />
         </div>
 
-        <Divider className='basis-1/6 -mt-8 z-50 rotate-[5deg]'/>
+        <Divider className='basis-1/6 -mt-10 z-50 rotate-[5deg]'/>
     
       </div>      
 
 
-      <div className='basis-1/3 flex justify-center items-center pb-10'>
+      <div className='basis-1/3 flex justify-center items-center pb-10 mt-16'>
 
         <button className='z-50 bg-[#FBDDB6] w-3/4 h-12 py-1 rounded-full 
           mx-auto font-Tinos hover:child:(1):scale-150 group hover:shadow-[#954004] hover:shadow-md

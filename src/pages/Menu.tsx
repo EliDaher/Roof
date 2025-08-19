@@ -14,9 +14,10 @@ export default function Menu() {
     return (
         <ScreenWrapper>
             <MenuBtn/>
-            <h1 className='fixed w-full font-italianno text-6xl text-center pt-4 z-20'>MENU</h1>
+            <h1 className='fixed w-full font-italianno text-5xl text-center pt-5 z-20'>MENU</h1>
+            <div className='min-h-screen w-16 bg-white fixed top-0 left-0 z-10'></div>
 
-            <div className='mt-24 max-h-[calc(98vh-4rem)] overflow-y-auto'>
+            <div className='mt-28 max-h-[calc(98vh-4rem)] overflow-y-auto'>
                 <div className='flex flex-col gap-10'>
                     {types.map((type, idx) => (
                         <TypeBtn key={idx} icon={type.icon} text={type.text} />
@@ -24,7 +25,6 @@ export default function Menu() {
                 </div>
             </div>
               
-            <div className='min-h-screen w-20 bg-white fixed top-0 left-0 z-10'></div>
         </ScreenWrapper>
 
     )
