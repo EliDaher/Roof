@@ -14,26 +14,26 @@ export default function Landing() {
   return (
     <ScreenWrapper>
       <div 
-          className='flex flex-col'
+          className='flex flex-col gap-2 h-screen'
       >
         <div className='mt-2 mb-5 basis-1/3'>
           <LandingHeader/>
         </div>
     
-        <div className='flex flex-col basis-1/3 mt-5'>
+        <div className='flex flex-col basis-1/3 mt-4'>
     
-          <Divider className='w-full mt-5 basis-1/6'/>
+          <Divider className='w-full basis-1/6 mb-2'/>
     
           <div className='w-full basis-4/6 sm:hidden flex rotate-[-2deg] justify-center'>
-            <img src={Beer} className='-mt-[2rem] h-[18rem] animate-zoomIn object-cover object-top' alt="" />
+            <img src={Beer} className='h-[16rem] animate-zoomIn object-cover object-top' alt="" />
           </div>
     
-          <Divider className='basis-1/6 -mt-7 z-50 rotate-[3deg]'/>
+          <Divider className='basis-1/6 -mt-8 z-50 rotate-[5deg]'/>
       
         </div>      
     
     
-        <div className='basis-1/3 flex justify-center  pt-24'>
+        <div className='basis-1/3 flex justify-center items-center'>
     
           <button className='z-50 bg-[#FBDDB6] w-3/4 h-12 py-1 rounded-full 
             mx-auto font-Tinos hover:child:(1):scale-150 group hover:shadow-[#954004] hover:shadow-md
