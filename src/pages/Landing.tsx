@@ -37,7 +37,7 @@ export default function Landing() {
     
           <button className='z-50 bg-[#FBDDB6] w-3/4 h-12 py-1 rounded-full 
             mx-auto font-Tinos hover:child:(1):scale-150 group hover:shadow-[#954004] hover:shadow-md
-            text-4xl font-bold text-[#954004] shadow-lg shadow-[#FAD29E50]
+            text-3xl font-bold text-[#954004] shadow-lg shadow-[#FAD29E50]
             overflow-hidden animate-bounceIn hover-animate-glow transition-all duration-1000'
             onClick={()=>{
               setTimeout(() => navigate('/Menu'), 650)   
