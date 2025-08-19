@@ -8,7 +8,7 @@ export default function LandingHeader() {
       </h1>
 
       <div className="flex flex-col justify-center items-center -mt-8">
-        <div className="flex items-center justify-center gap-2">
+        <div className="flex items-center justify-center gap-1.5">
           <h1 className="font-italianno text-[#FAD29E] text-6xl mt-5">
             R
           </h1>

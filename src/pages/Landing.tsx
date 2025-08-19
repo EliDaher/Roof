@@ -33,7 +33,7 @@ export default function Landing() {
         </div>      
     
     
-        <div className='basis-1/3 flex justify-center items-center'>
+        <div className='basis-1/3 flex justify-center items-center mb-5'>
     
           <button className='z-50 bg-[#FBDDB6] w-3/4 h-12 py-1 rounded-full 
             mx-auto font-Tinos hover:child:(1):scale-150 group hover:shadow-[#954004] hover:shadow-md
