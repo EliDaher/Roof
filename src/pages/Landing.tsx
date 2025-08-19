@@ -16,7 +16,7 @@ export default function Landing() {
       <div 
           className='flex flex-col'
       >
-        <div className='mt-4 mb-5 basis-1/3'>
+        <div className='mt-2 mb-5 basis-1/3'>
           <LandingHeader/>
         </div>
     
@@ -24,28 +24,28 @@ export default function Landing() {
     
           <Divider className='w-full mt-5 basis-1/6'/>
     
-          <div className='w-full basis-4/6 sm:hidden overflow-hidden'>
-            <img src={Beer} className='w-full -mt-24 h-[22rem] animate-zoomIn object-cover object-top' alt="" />
+          <div className='w-full basis-4/6 sm:hidden flex rotate-[-2deg] justify-center'>
+            <img src={Beer} className='-mt-[2rem] h-[18rem] animate-zoomIn object-cover object-top' alt="" />
           </div>
     
-          <Divider className='basis-1/6 -mt-10 z-50 rotate-[5deg]'/>
+          <Divider className='basis-1/6 -mt-7 z-50 rotate-[3deg]'/>
       
         </div>      
     
     
-        <div className='basis-1/3 flex justify-center items-center pb-10 mt-16'>
+        <div className='basis-1/3 flex justify-center  pt-24'>
     
           <button className='z-50 bg-[#FBDDB6] w-3/4 h-12 py-1 rounded-full 
             mx-auto font-Tinos hover:child:(1):scale-150 group hover:shadow-[#954004] hover:shadow-md
-            text-4xl font-bold text-[#954004] shadow-lg shadow-[#FAD29E50] mt-10
+            text-4xl font-bold text-[#954004] shadow-lg shadow-[#FAD29E50]
             overflow-hidden animate-bounceIn hover-animate-glow transition-all duration-1000'
             onClick={()=>{
               setTimeout(() => navigate('/Menu'), 650)   
             }}
           >
             MENU
-            <img src={CoffeeB} alt="" className='h-96 absolute -mt-24 ml-28 z-10 group-hover:ml-5 group-:scale-[15] transition-all duration-1000'/>
-            <img src={CoffeeB} alt="" className='h-96  -mt-24 -ml-20 z-10 rotate-180 group-hover:ml-0 group-hoverscale-[15] transition-all duration-1000'/>
+            <img src={CoffeeB} alt="" className='absolute -mt-20 ml-40 z-10 group-hover:ml-5 group-:scale-[15] transition-all duration-1000'/>
+            <img src={CoffeeB} alt="" className='-mt-20 -ml-36 z-10 rotate-180 group-hover:ml-0 group-hoverscale-[15] transition-all duration-1000'/>
           </button>
         </div>
           

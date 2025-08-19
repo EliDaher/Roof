@@ -7,7 +7,7 @@ export default function LandingHeader() {
         welcome to
       </h1>
 
-      <div className="flex flex-col justify-center items-center -mt-5">
+      <div className="flex flex-col justify-center items-center -mt-8">
         <div className="flex items-center justify-center gap-2">
           <h1 className="font-italianno text-[#FAD29E] text-7xl mt-5">
             R
@@ -25,7 +25,7 @@ export default function LandingHeader() {
           </h1>
         </div>
 
-        <h1 className="font-italianno text-7xl text-white/30 -mt-2">
+        <h1 className="font-italianno text-7xl text-white/30 -mt-3">
           CAFE
         </h1>
       </div>
