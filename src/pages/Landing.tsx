@@ -35,7 +35,7 @@ export default function Landing() {
     
         <div className='basis-1/3 flex justify-center items-center mb-5'>
     
-          <button className='z-50 bg-[#FBDDB6] w-3/4 h-12 py-1 rounded-full 
+          <button className='z-50 bg-[#FBDDB6] w-2/4 h-12 py-1 rounded-full 
             mx-auto font-Tinos hover:child:(1):scale-150 group hover:shadow-[#954004] hover:shadow-md
             text-3xl font-bold text-[#954004] shadow-lg shadow-[#FAD29E50]
             overflow-hidden animate-bounceIn hover-animate-glow transition-all duration-1000'
@@ -44,8 +44,8 @@ export default function Landing() {
             }}
           >
             MENU
-            <img src={CoffeeB} alt="" className='absolute -mt-20 ml-40 z-10 group-hover:ml-5 group-:scale-[15] transition-all duration-1000'/>
-            <img src={CoffeeB} alt="" className='-mt-20 -ml-36 z-10 rotate-180 group-hover:ml-0 group-hoverscale-[15] transition-all duration-1000'/>
+            <img src={CoffeeB} alt="" className='absolute -mt-12 ml-32 z-10 group-hover:ml-5 group-:scale-[15] transition-all duration-1000'/>
+            <img src={CoffeeB} alt="" className='-mt-14 -ml-32 z-10 rotate-180 group-hover:ml-0 group-hoverscale-[15] transition-all duration-1000'/>
           </button>
         </div>
           
