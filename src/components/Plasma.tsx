@@ -8,6 +8,7 @@ interface PlasmaProps {
   scale?: number;
   opacity?: number;
   mouseInteractive?: boolean;
+  lowPerformance?: boolean; // ✅ جديد
 }
 
 const hexToRgb = (hex: string): [number, number, number] => {
@@ -43,6 +44,7 @@ uniform float uScale;
 uniform float uOpacity;
 uniform vec2 uMouse;
 uniform float uMouseInteractive;
+uniform float uIterations; // ✅ للتحكم بعدد التكرارات
 out vec4 fragColor;
 
 void mainImage(out vec4 o, vec2 C) {
@@ -52,19 +54,21 @@ void mainImage(out vec4 o, vec2 C) {
   vec2 mouseOffset = (uMouse - center) * 0.0002;
   C += mouseOffset * length(C - center) * step(0.5, uMouseInteractive);
   
-  float i, d, z, T = iTime * uSpeed * uDirection;
-  vec3 O, p, S;
+  float i = 0.0, d, z, T = iTime * uSpeed * uDirection;
+  vec3 O = vec3(0.0), p, S;
+  vec4 temp;
 
-  for (vec2 r = iResolution.xy, Q; ++i < 60.; O += o.w/d*o.xyz) {
-    p = z*normalize(vec3(C-.5*r,r.y)); 
+  for (i = 0.0; i < uIterations; i++) {
+    p = z * normalize(vec3(C - 0.5 * iResolution.xy, iResolution.y)); 
     p.z -= 4.; 
     S = p;
-    d = p.y-T;
+    d = p.y - T;
     
     p.x += .4*(1.+p.y)*sin(d + p.x*0.1)*cos(.34*d + p.x*0.05); 
-    Q = p.xz *= mat2(cos(p.y+vec4(0,11,33,0)-T)); 
+    vec2 Q = p.xz *= mat2(cos(p.y+vec4(0,11,33,0)-T)); 
     z+= d = abs(sqrt(length(Q*Q)) - .25*(5.+S.y))/3.+8e-4; 
-    o = 1.+sin(S.y+p.z*.5+S.z-length(S-p)+vec4(2,1,0,8));
+    temp = 1.0 + sin(S.y+p.z*.5+S.z-length(S-p)+vec4(2,1,0,8));
+    O += temp.w/d * temp.xyz;
   }
   
   o.xyz = tanh(O/1e4);
@@ -99,6 +103,7 @@ export const Plasma: React.FC<PlasmaProps> = ({
   scale = 1,
   opacity = 1,
   mouseInteractive = true,
+  lowPerformance = false, // ✅ افتراضي false
 }) => {
   const containerRef = useRef<HTMLDivElement | null>(null);
   const mousePos = useRef({ x: 0, y: 0 });
@@ -115,7 +120,7 @@ export const Plasma: React.FC<PlasmaProps> = ({
       webgl: 2,
       alpha: true,
       antialias: false,
-      dpr: Math.min(window.devicePixelRatio || 1, 2),
+      dpr: lowPerformance ? 1 : Math.min(window.devicePixelRatio || 1, 2), // ✅ تخفيف
     });
     const gl = renderer.gl;
     const canvas = gl.canvas as HTMLCanvasElement;
@@ -140,6 +145,7 @@ export const Plasma: React.FC<PlasmaProps> = ({
         uOpacity: { value: opacity },
         uMouse: { value: new Float32Array([0, 0]) },
         uMouseInteractive: { value: mouseInteractive ? 1.0 : 0.0 },
+        uIterations: { value: lowPerformance ? 20.0 : 60.0 }, // ✅ عدد أقل
       },
     });
 
@@ -163,7 +169,10 @@ export const Plasma: React.FC<PlasmaProps> = ({
       const rect = containerRef.current!.getBoundingClientRect();
       const width = Math.max(1, Math.floor(rect.width));
       const height = Math.max(1, Math.floor(rect.height));
-      renderer.setSize(width, height);
+      renderer.setSize(
+        lowPerformance ? width * 0.7 : width, // ✅ تقليل الحجم
+        lowPerformance ? height * 0.7 : height
+      );
       const res = program.uniforms.iResolution.value as Float32Array;
       res[0] = gl.drawingBufferWidth;
       res[1] = gl.drawingBufferHeight;
@@ -175,16 +184,20 @@ export const Plasma: React.FC<PlasmaProps> = ({
 
     let raf = 0;
     const t0 = performance.now();
+    let frame = 0;
     const loop = (t: number) => {
-      let timeValue = (t - t0) * 0.001;
+      frame++;
+      if (!lowPerformance || frame % 2 === 0) { // ✅ تحديث أقل
+        let timeValue = (t - t0) * 0.001;
 
-      if (direction === "pingpong") {
-        const cycle = Math.sin(timeValue * 0.5) * directionMultiplier;
-        (program.uniforms.uDirection as any).value = cycle;
+        if (direction === "pingpong") {
+          const cycle = Math.sin(timeValue * 0.5) * directionMultiplier;
+          (program.uniforms.uDirection as any).value = cycle;
+        }
+
+        (program.uniforms.iTime as any).value = timeValue;
+        renderer.render({ scene: mesh });
       }
-
-      (program.uniforms.iTime as any).value = timeValue;
-      renderer.render({ scene: mesh });
       raf = requestAnimationFrame(loop);
     };
     raf = requestAnimationFrame(loop);
@@ -199,7 +212,7 @@ export const Plasma: React.FC<PlasmaProps> = ({
         containerRef.current?.removeChild(canvas);
       } catch {}
     };
-  }, [color, speed, direction, scale, opacity, mouseInteractive]);
+  }, [color, speed, direction, scale, opacity, mouseInteractive, lowPerformance]);
 
   return (
     <div
