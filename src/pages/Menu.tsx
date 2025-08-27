@@ -43,31 +43,40 @@ export default function Menu() {
     : menuItems.filter(item => item.class === selected)
 
   return (
-    <ScreenWrapper className={'pt-20'}>
-      <TopBar header={'MENU'} />
-
-      <h1 className='text-5xl font-Tinos mb-6'>
-        Order now and savor your favorites
-      </h1>
-
-      <div className='flex gap-3 overflow-x-scroll hide-scrollbar'>
-        {buttons.map((type, idx) => (
-          <TypeBtn
-            selected={selected}
-            onSelect={setSelected}
-            key={idx}
-            text={type.text}
-          />
-        ))}
+    <ScreenWrapper className="flex flex-col h-screen">
+  
+      {/* Top Section - ثابت */}
+      <div className="sticky top-0 z-20 border-b-2 border-white/20 shadow-xl pb-4">
+        <TopBar header={'MENU'} />
+    
+        <h1 className="text-5xl font-Tinos mb-6 mt-20">
+          Order now and <br /> savor your <br /> favorites
+        </h1>
+    
+        <div className="flex gap-3 overflow-x-auto hide-scrollbar px-1">
+          {buttons.map((type, idx) => (
+            <TypeBtn
+              selected={selected}
+              onSelect={setSelected}
+              key={idx}
+              text={type.text}
+            />
+          ))}
+        </div>
       </div>
-
-      <div className='grid grid-cols-2 md:grid-cols-3 gap-5 mt-6'>
-        {[...filteredItems,...filteredItems,...filteredItems,...filteredItems].map((item, idx) => (
-          <FoodCard key={idx} item={item} />
-        ))}
+      
+      {/* Scrollable Content */}
+      <div className="flex-1 overflow-y-auto px-2 hide-scrollbar">
+        <div className="grid grid-cols-2 md:grid-cols-3 gap-5 mt-6">
+          {[...filteredItems,...filteredItems,...filteredItems,...filteredItems,...filteredItems].map((item, idx) => (
+            <FoodCard key={idx} item={item} />
+          ))}
+        </div>
       </div>
-
+      
+      {/* Footer - ثابت */}
       <Footer />
     </ScreenWrapper>
+
   )
 }
