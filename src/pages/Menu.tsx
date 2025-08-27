@@ -3,7 +3,7 @@ import ScreenWrapper from '../components/ScreenWrapper'
 import TypeBtn from '../components/TypeBtn'
 import Footer from '@/components/Footer'
 import TopBar from '@/components/TopBar'
-import coffeeCup from '../assets/coffeeCup.png'
+import coffeeCup from '../assets/coffeeCup2.png'
 import IcedLatte from '../assets/IcedLatte.jpeg'
 import FoodCard from '@/components/FoodCard'
 

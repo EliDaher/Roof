@@ -12,7 +12,7 @@ export default function Landing() {
   const navigate = useNavigate()
 
   return (
-    <ScreenWrapper>
+    <ScreenWrapper className={'px-0'}>
       <div 
           className='flex flex-col gap-2 h-screen'
       >
