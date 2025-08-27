@@ -1,44 +1,73 @@
-import React from 'react'
+import { useEffect, useState } from 'react'
 import ScreenWrapper from '../components/ScreenWrapper'
-import MenuBtn from '../components/MenuBtn'
-import MenuCoffee from '../assets/MenuCoffee.png'
-import ShiSha from '../assets/Shisha.png'
-import Sandwich from '../assets/Sandwich.png'
-import Dessert from '../assets/Dessert.png'
-import Nuts from '../assets/Nuts.png'
-import ColdDrinks from '../assets/ColdDrinks.png'
 import TypeBtn from '../components/TypeBtn'
 import Footer from '@/components/Footer'
-
-const types = [
-    {icon: MenuCoffee, text: 'Hot Drinks'},
-    {icon: ColdDrinks, text: 'Cold Drinks'},
-    {icon: ShiSha, text: 'Shisha'},
-    {icon: Nuts, text: 'Nuts & Chips'},
-    {icon: Dessert, text: 'Dessert & Sweets'},
-    {icon: Sandwich, text: 'Sandwiches & Snacks'},
-    
-];
-
-
+import TopBar from '@/components/TopBar'
+import coffeeCup from '../assets/coffeeCup.png'
+import IcedLatte from '../assets/IcedLatte.jpeg'
+import FoodCard from '@/components/FoodCard'
 
 export default function Menu() {
-    return (
-        <ScreenWrapper>
-            <MenuBtn/>
-            <h1 className='fixed w-full font-italianno text-5xl text-center pt-5 z-20'>MENU</h1>
-            <div className='min-h-screen w-16 bg-white opacity-10 fixed top-0 left-0 z-10'></div>
+  const [selected, setSelected] = useState("All")
+  const [menuItems, setMenuItems] = useState([])
 
-            <div className='mt-20 max-h-[calc(98vh-4rem)] overflow-y-auto'>
-                <div className='flex flex-col gap-5 pb-10'>
-                    {types.map((type, idx) => (
-                        <TypeBtn key={idx} icon={type.icon} text={type.text} />
-                    ))}
-                </div>
-            </div>
-              
-            <Footer/>
-        </ScreenWrapper>
+  const buttons = [
+    { text: 'All' },
+    { text: 'Hot Drinks' },
+    { text: 'Cold Drinks' },
+    { text: 'Shisha' },
+    { text: 'Nuts & Chips' },
+    { text: 'Dessert & Sweets' },
+    { text: 'Sandwiches & Snacks' },
+  ]
 
-    )
+  useEffect(() => {
+    setMenuItems([
+      {
+        name: 'Black Coffee',
+        price: 25000,
+        img: coffeeCup,
+        class: 'Hot Drinks'
+      },
+      {
+        name: 'Iced Latte',
+        price: 30000,
+        img: IcedLatte,
+        class: 'Cold Drinks'
+      },
+    ])
+  }, [])
+
+  const filteredItems = selected === "All"
+    ? menuItems
+    : menuItems.filter(item => item.class === selected)
+
+  return (
+    <ScreenWrapper className={'pt-20'}>
+      <TopBar header={'MENU'} />
+
+      <h1 className='text-5xl font-Tinos mb-6'>
+        Order now and savor your favorites
+      </h1>
+
+      <div className='flex gap-3 overflow-x-scroll hide-scrollbar'>
+        {buttons.map((type, idx) => (
+          <TypeBtn
+            selected={selected}
+            onSelect={setSelected}
+            key={idx}
+            text={type.text}
+          />
+        ))}
+      </div>
+
+      <div className='grid grid-cols-2 md:grid-cols-3 gap-5 mt-6'>
+        {[...filteredItems,...filteredItems,...filteredItems,...filteredItems].map((item, idx) => (
+          <FoodCard key={idx} item={item} />
+        ))}
+      </div>
+
+      <Footer />
+    </ScreenWrapper>
+  )
 }
