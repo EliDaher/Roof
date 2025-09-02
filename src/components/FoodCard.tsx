@@ -14,7 +14,7 @@ type FoodCardProp = {
 
 export default function FoodCard({item}: FoodCardProp) {
   return (
-    <div className='bg-[#1d2844] relative rounded-xl font-Tinos'>
+    <div className='bg-[#1d2844] relative rounded-xl font-Tinos hover:scale-110 transition-all duration-500'>
         <div className='p-1'>
             <img src={item.img} alt="" className='mx-auto w-full h-32 rounded-xl' />
         </div>
@@ -26,7 +26,8 @@ export default function FoodCard({item}: FoodCardProp) {
         <button 
             className='absolute bottom-2 right-3 
             bg-[#FAD29E50] rounded-xl border
-            border-[#FAD29E] hover:bg-[#FAD29E90]'
+            border-[#FAD29E] hover:bg-[#FAD29E90]
+            transition-all duration-500'
         >
             {<Plus />}
         </button>

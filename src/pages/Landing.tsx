@@ -41,7 +41,7 @@ export default function Landing() {
             shadow-lg shadow-[#FAD29E50] hover:shadow-[#954004] hover:shadow-md
             overflow-hidden animate-bounceIn transition-all duration-1000 group"
             onClick={() => {
-              setTimeout(() => navigate('/Menu'), 650)
+              setTimeout(() => navigate('/Menu'), 250)
             }}
           >
             MENU
@@ -50,12 +50,12 @@ export default function Landing() {
             <img
               src={CoffeeB}
               alt=""
-              className="absolute -top-3 -right-28 z-10 transition-all duration-700 group-hover:-right-14 group-hover:scale-125"
+              className="absolute -top-3 -right-28 z-10 transition-all duration-500 group-hover:-right-14 group-hover:scale-125"
             />
             <img
               src={CoffeeB}
               alt=""
-              className="absolute -top-1 -left-28 rotate-180 z-10 transition-all duration-700 group-hover:-left-14 group-hover:scale-125"
+              className="absolute -top-1 -left-28 rotate-180 z-10 transition-all duration-500 group-hover:-left-14 group-hover:scale-125"
             />
           </button>
         </div>
